@@ -449,10 +449,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('loadConfig', function() {
 
-
-      var config=grunt.file.readJSON('config/config.json');
-      grunt.log.warn('foo',config);
-
+    var myConfig={};
+    try {
+          myConfig = require('config/config.js');
+        } catch(e) {
+          grunt.fail.fatal('This app requires a valid API key from wunderground http://www.wunderground.com/weather/api/ to poll weather data',1);
+        }
   });
 
 
