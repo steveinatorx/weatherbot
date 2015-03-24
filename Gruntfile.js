@@ -27,6 +27,27 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
+    //app specific constant
+    wundergroundKeyENV: process.env.WUNDERGROUNDKEY,
+
+    ngconstant: {
+      // Options for all targets
+      options: {
+        name: 'config',
+      },
+      // Environment targets
+      development: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            wundergroundKey:  process.env.WUNDERGROUNDKEYENV
+          }
+        }
+      }
+    },
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -432,6 +453,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'loadConfig',
       'wiredep',
       'concurrent:server',
@@ -448,16 +470,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('loadConfig', function() {
-
-    var myConfig={};
-    try {
-          myConfig = require('config/config.js');
-        } catch(e) {
-          grunt.fail.fatal('This app requires a valid API key from wunderground http://www.wunderground.com/weather/api/ to poll weather data',1);
-        }
-  });
-
-
+  
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
