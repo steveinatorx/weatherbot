@@ -1,0 +1,47 @@
+<div class="row">
+
+    <div class="pull-left" style="margin-top:8px;margin-left:15px;">
+
+        <div style="display:inline-block">
+           <div style="display:inline-block;text-align:left;" class="digital">
+             <img src="/assets/images/robot.png" style="width:50px">
+           </div>
+
+           <div style="display:inline-block;vertical-align:top">Weather Bot v.1.10 <br>
+             GEOLOCATION: {{geo}}
+<load-Animation/>
+           </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+   <div class="col-xs-12 digital" style="">
+     <h3 style="font-family: DS-DIGIT">Weather:</h3>
+
+{{weather}} 
+
+<load-Animation/>
+
+<div style="margin-left:125px;margin-top:-14px" ng-show="!weather">
+          <div us-spinner="{radius:8, width:3, length: 4, color: 'green', position: 'relative'}"></div>
+</div>
+
+</div>
+
+   </div>
+
+{{weather}}
+</div>
+
+<footer class="navbar-default navbar-fixed-bottom" style="background-color: black;">
+  <div id="container">
+    <center>
+      a <img src="assets/images/bitcalculus_logo.gif"> project 2015
+    </center>
+  </div>
+</footer>
+
