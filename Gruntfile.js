@@ -32,7 +32,7 @@ module.exports = function (grunt) {
       // Options for all targets
       options: {
         space: '  ',
-         wrap: '"use strict";\n\n {%= __ngModule %}',
+         wrap: '\'use strict\';\n\n {%= __ngModule %}',
         name: 'config',
       },
       // Environment targets
@@ -43,13 +43,16 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            wundergroundApiKey: process.env.WUNDERGROUNDAPIKEY
+            wundergroundApiKey: process.env.WUNDERGROUNAPIKEY
           }
         }
       }
     },
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      options: {
+        livereload: true
+      },
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
@@ -470,7 +473,6 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('loadConfig', function() {
-
 
   grunt.registerTask('test', [
     'clean:server',

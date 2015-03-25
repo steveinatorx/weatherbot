@@ -8,23 +8,49 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, ENV) {
-
+  .controller('MainCtrl', function ($scope, $log, geolocation, localStorageService, ENV) {
 
   $scope.alerts=[];
 
-  $scope.addAlert = function(alert) {
-    $log.log(alert);
+  function init() {
+    if (typeof ENV.wundergroundApiKey === 'undefined') {
+        addAlert({'msg':'Error! missing the WUNDERGROUNDAPIKEY environment variable. get one here <a href="http://www.wunderground.com/weather/api/"> wunderground api </a> and set this in your environment to run the weather API calls','type':'danger'});
+    }
+    if(!assertGeoAuth()) {
+      getGeo();
+    }
+  }
+  init();
+
+  function addAlert(alert) {
     $scope.alerts.push(alert);
+  }
+
+  $scope.getGeo = function() {
+     getGeo();
   };
 
-  $scope.closeAlert = function(index) {
+  $scope.closeAlert = function(index) { 
     $scope.alerts.splice(index, 1);
   };
 
-    if (typeof ENV.wundergroundApiKey == "undefined") {
+  function getGeo() {
+    console.log('getGeo');
+   geolocation.getLocation().then(function(data){
+     $scope.geo = {lat:data.coords.latitude, long:data.coords.longitude};
+     localStorageService.set('geo',$scope.geo);
+     localStorageService.set('authorizedGeo',true);
+   });
+  };
 
-        $scope.addAlert({'msg':'Error! missing the WUNDERGROUNDAPIKEY environment variable. get one here and set it in your env <a href="http://www.wunderground.com/weather/api/"> wunderground api </a>','type':'danger'});
-    }
+  function assertGeoAuth() {
+    if(typeof localStorageService.get('authorizedGeo') === 'undefined' || localStorageService.get('authorizedGeo') === '0' ||  localStorageService.get('authorizedGeo') === null ) { return false;
+    } else {
+       $scope.geo=localStorageService.get('geo'); 
+       return true;
+       //weatherService.getWeather().then(function(res){
+       //$scope.weather=res.houry_forecast[0].condition;
+     }
+  }
 
 });

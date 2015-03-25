@@ -17,7 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'config'
+    'config',
+    'geolocation',
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider
