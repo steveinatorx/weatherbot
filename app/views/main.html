@@ -17,24 +17,19 @@
   </div>
 </div>
 
+<div class="container">
+  <span class="span12">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">    <span ng-bind-html="alert.msg"></span></alert>
+  </span>
+</div>
 
 <div class="container">
-   <div class="col-xs-12 digital" style="">
-     <h3 style="font-family: DS-DIGIT">Weather:</h3>
-
-{{weather}} 
-
-<load-Animation/>
-
-<div style="margin-left:125px;margin-top:-14px" ng-show="!weather">
-          <div us-spinner="{radius:8, width:3, length: 4, color: 'green', position: 'relative'}"></div>
+   <div class="col-xs-12 digital" style="display:inline-block;">
+     <h3 class="digital" style="display:inline-block">Weather:</h3>
+{{weather}} <load-Animation/>
+    </div>
 </div>
 
-</div>
-
-   </div>
-
-{{weather}}
 </div>
 
 <footer class="navbar-default navbar-fixed-bottom" style="background-color: black;">
