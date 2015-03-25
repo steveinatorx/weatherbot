@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="pull-left" style="margin-top:8px;margin-left:15px;">
+    <div class="pull-left digital" style="margin-top:8px;margin-left:15px;">
 
         <div style="display:inline-block">
            <div style="display:inline-block;text-align:left;" class="digital">
@@ -10,11 +10,16 @@
            <div style="display:inline-block;vertical-align:top">Weather Bot v.1.10 <br>
              GEOLOCATION: {{geo}}
 <load-Animation ng-show="!geo"/>
+
            </div>
         </div>
 
     </div>
-  </div>
+
+    <div class="pull-right">
+      <br>
+      <button type="button" class="btn btn-warning" ng-click="getGeo()">reset location</button>
+    </div>  
 </div>
 
 <div class="container">
