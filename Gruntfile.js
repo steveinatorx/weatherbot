@@ -31,7 +31,6 @@ module.exports = function (grunt) {
     ngconstant: {
       // Options for all targets
       options: {
-        space: '  ',
          wrap: '\'use strict\';\n\n {%= __ngModule %}',
         name: 'config',
       },
@@ -43,7 +42,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            wundergroundApiKey: process.env.WUNDERGROUNAPIKEY
+            wundergroundApiKey: process.env.WUNDERGROUNDAPIKEY
           }
         }
       }

@@ -8,13 +8,22 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, geolocation, localStorageService, ENV) {
+  .controller('MainCtrl', function ($scope, $log, geolocation, localStorageService, ENV, weatherApi) {
+
+  $scope.$watch('geo',function() {
+    $log.log('geo ticked');
+    weatherApi.getWeather()
+    .then(function(data) {
+      $log.info(data);
+    });
+  }, true);
 
   $scope.alerts=[];
 
   function init() {
     if (typeof ENV.wundergroundApiKey === 'undefined') {
         addAlert({'msg':'Error! missing the WUNDERGROUNDAPIKEY environment variable. get one here <a href="http://www.wunderground.com/weather/api/"> wunderground api </a> and set this in your environment to run the weather API calls','type':'danger'});
+
     }
     if(!assertGeoAuth()) {
       getGeo();
@@ -41,7 +50,7 @@ angular.module('weatherbotApp')
      localStorageService.set('geo',$scope.geo);
      localStorageService.set('authorizedGeo',true);
    });
-  };
+  }
 
   function assertGeoAuth() {
     if(typeof localStorageService.get('authorizedGeo') === 'undefined' || localStorageService.get('authorizedGeo') === '0' ||  localStorageService.get('authorizedGeo') === null ) { return false;
