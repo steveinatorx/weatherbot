@@ -12,10 +12,10 @@ angular.module('weatherbotApp')
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
-    weatherApi.getWeather()
+    /*weatherApi.getWeather()
     .then(function(data) {
       $log.info(data);
-    });
+    });*/
   }, true);
 
   $scope.alerts=[];
@@ -57,8 +57,6 @@ angular.module('weatherbotApp')
     } else {
        $scope.geo=localStorageService.get('geo'); 
        return true;
-       //weatherService.getWeather().then(function(res){
-       //$scope.weather=res.houry_forecast[0].condition;
      }
   }
 

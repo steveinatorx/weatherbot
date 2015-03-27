@@ -1,22 +1,49 @@
-'use strict';
+describe('Controller: MainCtrl', function () { 
 
-describe('Controller: MainCtrl', function () {
+var $controller, geolocation, createController, scope;
+ 
+beforeEach(function() {
 
-  // load the controller's module
-  beforeEach(module('weatherbotApp'));
+    module('weatherbotApp'); 
 
-  var MainCtrl,
-    scope;
+    var data = { "coords.latitude": -55, "coords.longitude":127.12342314 };
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+    geoMockSvc = {
+      getLocation: function() {
+        return {
+          then: function(data) {} 
+          };
+      }
+    }; 
+
+    module(function($provide){
+     $provide.value('geolocation',geoMockSvc);
     });
-  }));
+});
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
+beforeEach(function() {
+ inject(function($controller, $rootScope, _geolocation_) {
+      scope = $rootScope.$new();
+      geolocation = _geolocation_;
+      createController = function(params) {
+        return $controller("MainCtrl", {
+          $scope: scope,
+          $stateParams: params || {}
+        });
+      };
+    }); 
+});
+
+// Initialize the controller and a mock scope 
+ 
+  it('should try to call geolocation.getLocation', function () { 
+    //console.log(scope);
+    expect(scope).toBeDefined();
+    expect(geolocation).toBeDefined();
+    spyOn(geolocation, 'getLocation').and.callThrough();
+    createController();
+
+    expect(geolocation.getLocation).toHaveBeenCalled();
+
+  }); 
 });

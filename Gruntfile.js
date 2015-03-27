@@ -15,6 +15,7 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  //grunt.registerTask('loadConfig', function() {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -471,8 +472,6 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('loadConfig', function() {
-
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
@@ -504,5 +503,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-  });
 };

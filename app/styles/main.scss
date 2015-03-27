@@ -6,15 +6,16 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 
 body {
-    background: url(/assets/images/rst_radar_waves.gif);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-color: black;
-    color: #00FF00;
+    background-color: #2f3238;
+    color: white;
     font-size: 18px;
     width: 100%;
     overflow-x: hidden;
+    font-family: Raleway
+}
+
+.blue {
+  color: #3085a3;
 }
 
 .container {
@@ -25,6 +26,14 @@ body {
   font-family: 'DS-DIGIT';
   src: url('/assets/fonts/DS-DIGI.ttf')  format('truetype');
 }
+
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/assets/fonts/Raleway-Regular.ttf')  format('truetype');
+}
+
+
 
 #fadingBarsG{
 position:relative;
