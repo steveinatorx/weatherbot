@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/steveinatorx/weatherbot.png)](https://travis-ci.org/steveinatorx/weatherbot)
+
+
+
 # weatherbot
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
