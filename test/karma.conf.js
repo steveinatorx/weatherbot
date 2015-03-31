@@ -28,8 +28,6 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/spin.js/spin.js',
-      'bower_components/angular-spinner/angular-spinner.js',
       'bower_components/angularjs-geolocation/src/geolocation.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
