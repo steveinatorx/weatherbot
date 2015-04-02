@@ -1,4 +1,4 @@
     <div ng-repeat="hour in data track by $index">{{hour.condition}}
-      <i class="wi wi-day-sunny" style="color:#fff435;"></i>
+      <weather-icon data-condition="{{hour.condition}}"></weather-icon>
     </div>
 

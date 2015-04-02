@@ -17,7 +17,7 @@ angular.module('weatherbotApp')
     weatherApi.getWeather()
     .then(function(data) {
       //$log.info(data.hourly_forecast);
-        $scope.hourlyWeather=data.hourly_forecast;
+        $scope.hourlyWeather= _.slice(data.hourly_forecast,0,12);//we only need 12 hours
         console.log($scope.hourlyWeather.length);
         //$scope.hourlyWeather=data.hourly_forecast;
     });
