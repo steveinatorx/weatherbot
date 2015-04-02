@@ -19,7 +19,7 @@
     <div class="pull-right">
       <br>
       <button type="button" class="btn btn-warning" ng-click="getGeo()">reset location</button>
-    </div>  
+    </div>
 </div>
 
 <div class="container">
@@ -31,17 +31,28 @@
 <div class="container">
    <div class="col-xs-12 digital" style="display:inline-block;">
      <h3 class="digital" style="display:inline-block">Weather:</h3>
-{{weather}} <load-Animation/>
+<!-- <load-Animation></load-Animation>-->
+
+     <hourly-Weather data="hourlyWeather"></hourly-Weather>
+
+
     </div>
 </div>
+
+<!--
+<div ng-repeat="hour in hourlyWeather" >
+  {{hour.hour}}
+</div>
+-->
+
+
+
 
 </div>
 
 <footer class="navbar-default navbar-fixed-bottom" style="background-color: black;">
   <div id="container">
-    <center>
       a <img src="assets/images/bitcalculus_logo.gif"> project 2015
-    </center>
   </div>
 </footer>
 
