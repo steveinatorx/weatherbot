@@ -7,7 +7,7 @@
              <img src="/assets/images/robot.png" style="width:50px">
            </div>
 
-           <div style="display:inline-block;vertical-align:top"><span class="blue">Weather Bot v.1.10</span> <br>
+           <div style="display:inline-block;vertical-align:top"><span class="blue">NoeBot BETA</span> <br>
             <span class="blue">GEOLOCATION:</span> {{geo}}
               <load-Animation ng-show="!geo"/>
 
@@ -33,7 +33,6 @@
      <h2 class="digital" style="display:inline-block">{{currentWeather.temp_f}}&deg;&nbsp;{{currentWeather.weather}}
      </h2>
 <!-- <load-Animation></load-Animation>-->
-      <span class="blue">hourly forecast:</span>
      <hourly-Weather data="hourlyWeatherA"></hourly-Weather>
      <br>
      <hourly-Weather data="hourlyWeatherB"></hourly-Weather>
@@ -47,9 +46,14 @@
   {{hour.hour}}
 </div>
 -->
-
-
-
+<div class="container">
+<table style="margin-top:5px">
+  <tr class="row-fluid">
+    <td style="background-color:#3c8033;border:4px solid #3c8033" class="col-xs-2">bay news</td>
+    </td><td class="col-xs-11" style="border:4px solid #3c8033"><span class="easeUp">this is a news ticker........foo bar bazz</span></td>
+  </tr>
+</table>
+</div>
 
 </div>
 

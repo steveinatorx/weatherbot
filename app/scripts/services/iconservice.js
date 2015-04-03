@@ -19,6 +19,13 @@ angular.module('weatherbotApp')
         case 'nt_clear':
           myIcon = 'wi wi-night-clear';
           break;
+        case 'clear':
+              myIcon='wi wi-day-sunny';
+          break;
+        case 'nt_partlycloudy':
+              myIcon='wi wi-night-cloudy';
+          break;
+
       }
       return myIcon;
     };
