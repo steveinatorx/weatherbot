@@ -10,15 +10,19 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, geolocation, localStorageService, ENV, weatherApi) {
+  .controller('MainCtrl', function ($scope, $log, geolocation, localStorageService, ENV, lodash,  weatherApi) {
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
     weatherApi.getWeather()
     .then(function(data) {
+        var imageIconRe = new RegExp('\.*/([A-Z0-9_-]{1,})\.(?:png|jpg|gif|jpeg)','i');
       //$log.info(data.hourly_forecast);
-        $scope.hourlyWeather= _.slice(data.hourly_forecast,0,12);//we only need 12 hours
-        console.log($scope.hourlyWeather.length);
+        $scope.hourlyWeather=lodash.map(lodash.slice(data.hourly_forecast,0,12), function(hr){
+            hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
+              return hr;
+        });
+        console.log($scope.hourlyWeather[0].local_icon);
         //$scope.hourlyWeather=data.hourly_forecast;
     });
   }, true);

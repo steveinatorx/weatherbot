@@ -18,5 +18,5 @@ angular.module('weatherbotApp')
         //console.log(attrs.condition);
         $scope.wiIconClass=iconService.getIcon(attrs.condition);
       }
-    }
+    };
   });

@@ -19,7 +19,8 @@ angular
     'ui.bootstrap',
     'config',
     'geolocation',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngLodash'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -35,3 +36,4 @@ angular
         redirectTo: '/'
       });
   });
+

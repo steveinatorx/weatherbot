@@ -24,10 +24,10 @@ angular.module('weatherbotApp')
       controller: function($scope,iconService) {
 
         $scope.foo = function(raw) {
-          return iconService(raw)
-        }
+          return iconService(raw);
+        };
 
       }
 
-    }
+    };
   });

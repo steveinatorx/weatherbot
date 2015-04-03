@@ -13,13 +13,15 @@ angular.module('weatherbotApp')
 
     this.getIcon = function (raw) {
 
+      var myIcon='';
       switch (raw) {
 
-        case "Clear":
-          return "wi wi-day-sunny";
+        case 'nt_clear':
+          myIcon = 'wi wi-night-clear';
           break;
       }
-    }
+      return myIcon;
+    };
 
   });
 
