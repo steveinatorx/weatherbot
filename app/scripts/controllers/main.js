@@ -14,15 +14,36 @@ angular.module('weatherbotApp')
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
-    weatherApi.getWeather()
+
+    weatherApi.getCurrentWeather()
+      .then(function(data){
+
+        console.log('c',data);
+
+        $scope.currentWeather = data.current_observation;
+
+      });
+
+    weatherApi.getHourlyWeather()
     .then(function(data) {
         var imageIconRe = new RegExp('\.*/([A-Z0-9_-]{1,})\.(?:png|jpg|gif|jpeg)','i');
+        //var timeRe = new RegExp('\.*/([A-Z0-9_-]{1,})\.(?:png|jpg|gif|jpeg)','i');
       //$log.info(data.hourly_forecast);
-        $scope.hourlyWeather=lodash.map(lodash.slice(data.hourly_forecast,0,12), function(hr){
+        $scope.hourlyWeatherA=lodash.map(lodash.slice(data.hourly_forecast,0,12), function(hr){
             hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
+            hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
+
               return hr;
         });
-        console.log($scope.hourlyWeather[0].local_icon);
+         $scope.hourlyWeatherB=lodash.map(lodash.slice(data.hourly_forecast,12,24), function(hr){
+            hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
+            hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
+
+              return hr;
+        });
+
+
+
         //$scope.hourlyWeather=data.hourly_forecast;
     });
   }, true);

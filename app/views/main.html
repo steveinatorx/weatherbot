@@ -30,10 +30,13 @@
 
 <div class="container">
    <div class="col-xs-12 digital" style="display:inline-block;">
-     <h3 class="digital" style="display:inline-block">Weather:</h3>
+     <h2 class="digital" style="display:inline-block">{{currentWeather.temp_f}}&deg;&nbsp;{{currentWeather.weather}}
+     </h2>
 <!-- <load-Animation></load-Animation>-->
-
-     <hourly-Weather data="hourlyWeather"></hourly-Weather>
+      <span class="blue">hourly forecast:</span>
+     <hourly-Weather data="hourlyWeatherA"></hourly-Weather>
+     <br>
+     <hourly-Weather data="hourlyWeatherB"></hourly-Weather>
 
 
     </div>

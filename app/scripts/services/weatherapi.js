@@ -15,11 +15,22 @@ angular.module('weatherbotApp')
           $log.info('http://api.wunderground.com/api/' + ENV.wundergroundApiKey +'/hourly/q/CA/San_Francisco.json?callback=JSON_CALLBACK');
         $log.log('key',ENV.wundergroundApiKey);
 
+        self.getCurrentWeather = function() {
+            var data= self.makeApiCall('http://api.wunderground.com/api/' + ENV.wundergroundApiKey +'/conditions/q/CA/San_Francisco.json?callback=JSON_CALLBACK');
+            return data;
+        };
+
+        self.getHourlyWeather = function() {
+            var data=self.makeApiCall('http://api.wunderground.com/api/' + ENV.wundergroundApiKey +'/hourly/q/CA/San_Francisco.json?callback=JSON_CALLBACK');
+            console.log('hey',data);
+            return data;
+        };
+
         //we want to post-process this request because wunderground can pass an error stanza back so wrap into a promise
-        self.getWeather = function() {
+        self.makeApiCall = function(endpoint) {
           var deferred = $q.defer();
 
-          $http.jsonp('http://api.wunderground.com/api/' + ENV.wundergroundApiKey +'/hourly/q/CA/San_Francisco.json?callback=JSON_CALLBACK')
+          $http.jsonp(endpoint)
           .success(function(data) {
             $log.log(data);
             if(data.error) {
@@ -31,4 +42,11 @@ angular.module('weatherbotApp')
           });
         return deferred.promise;
         };
+
+
+
+
+
+
+
 });

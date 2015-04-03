@@ -1,4 +1,9 @@
-    <div ng-repeat="hour in data track by $index">{{hour.condition}}
-      <weather-icon data-condition="{{hour.local_icon }}"></weather-icon>
-    </div>
-
+<table>
+  <tr class=""row-fluid">
+    <td class="col-xs-1" style="padding:4px;border:3px solid #3085a3;" ng-repeat="hour in data track by $index">
+      {{hour.local_time}}<weather-icon data-condition="{{hour.local_icon }}"></weather-icon>
+      {{hour.condition}}<br>
+      {{hour.temp.english}}&deg;
+    </td>
+  </tr>
+</table>
