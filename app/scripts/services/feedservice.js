@@ -1,5 +1,7 @@
 'use strict';
 
+/*global google*/
+
 /**
  * @ngdoc service
  * @name weatherbotApp.feedService

@@ -31,10 +31,10 @@ angular.module('weatherbotApp')
         case 'partlycloudy':
               myIcon='wi wi-day-cloudy';
           break;
-        case "nt_mostlycloudy":
+        case 'nt_mostlycloudy':
               myIcon='wi wi-cloud';
           break;
-         case "mostlycloudy":
+         case 'mostlycloudy':
               myIcon='wi wi-cloud';
           break;
 
