@@ -13,7 +13,6 @@ angular.module('weatherbotApp')
     return function (input) {
 
       var treated =  input.split(/\s+/).length<2 ? input+"<br>":input;
-      console.log(treated);
       return treated;
     };
   });

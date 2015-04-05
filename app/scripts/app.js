@@ -22,18 +22,21 @@ angular
     'LocalStorageModule',
     'ngLodash'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider, ENV) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
+    //conditional inject
+    if(ENV.mockApi === true) {
+        console.log('injected interceptor!!!!!!!')
+        $httpProvider.interceptors.push('httpInterceptor')
+
+    }
+
   });
 

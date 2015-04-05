@@ -38,12 +38,14 @@ module.exports = function (grunt) {
         // Environment targets
         development: {
           options: {
-            dest: '<%= yeoman.app %>/scripts/config.js'
+            dest: '<%= yeoman.app %>/config/config.js'
           },
           constants: {
             ENV: {
               name: 'development',
-              wundergroundApiKey: process.env.WUNDERGROUNDAPIKEY
+              wundergroundApiKey: process.env.WUNDERGROUNDAPIKEY,
+              mockApi: grunt.option('mockApi') || false,
+              wApiHourlyMockJson: grunt.file.readJSON('app/config/wApiHourly.json')
             }
           }
         }

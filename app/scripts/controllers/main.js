@@ -10,16 +10,26 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, geolocation, localStorageService, ENV, lodash,  weatherApi) {
+  .controller('MainCtrl', function ($scope, $log, $interval, geolocation, localStorageService, ENV, lodash, weatherApi, feedService) {
+
+
+  $scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
+  $scope.newsTick=false;
+
+  $interval(function(){
+    //todo: put into dynamic constants
+    $scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
+  },1000*600);
+
+  $interval(function(){
+    $scope.newsTick=!$scope.newsTick;
+  },5000);
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
 
     weatherApi.getCurrentWeather()
       .then(function(data){
-
-        console.log('c',data);
-
         $scope.currentWeather = data.current_observation;
 
       });
@@ -41,9 +51,6 @@ angular.module('weatherbotApp')
 
               return hr;
         });
-
-
-
         //$scope.hourlyWeather=data.hourly_forecast;
     });
   }, true);
@@ -87,6 +94,23 @@ angular.module('weatherbotApp')
        $scope.geo=localStorageService.get('geo');
        return true;
      }
+  }
+
+  function getFeed(url){
+    feedService.getFeeds(url,15)
+      .then(function (feedsObj) {
+        console.log('feeds obj?',feedsObj[0].title.toString());
+
+        $scope.localNews=lodash.map(feedsObj,function(feedObj){
+
+          return {title:feedObj.title.toString()};
+
+        })
+
+    },function (error) {
+      console.error('Error loading feed ', error);
+      $scope.error = error;
+    })
   }
 
 });

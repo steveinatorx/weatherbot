@@ -9,7 +9,7 @@
 
            <div style="display:inline-block;vertical-align:top"><span class="blue">NoeBot BETA</span> <br>
             <span class="blue">GEOLOCATION:</span> {{geo}}
-              <load-Animation ng-show="!geo"/>
+              <load-Animation/>
 
            </div>
         </div>
@@ -29,7 +29,6 @@
 </div>
 
 <div class="container">
-   <div class="col-xs-12 digital" style="display:inline-block;">
      <h2 class="digital" style="display:inline-block">{{currentWeather.temp_f}}&deg;&nbsp;{{currentWeather.weather}}
      </h2>
 <!-- <load-Animation></load-Animation>-->
@@ -38,7 +37,6 @@
      <hourly-Weather data="hourlyWeatherB"></hourly-Weather>
 
 
-    </div>
 </div>
 
 <!--
@@ -46,18 +44,24 @@
   {{hour.hour}}
 </div>
 -->
+
 <div class="container">
 <table style="margin-top:5px">
-  <tr class="row-fluid">
+  <tr>
     <td style="background-color:#3c8033;border:4px solid #3c8033" class="col-xs-2">bay news</td>
-    </td><td class="col-xs-11" style="border:4px solid #3c8033"><span class="easeUp">this is a news ticker........foo bar bazz</span></td>
+    </td><td class="col-xs-10" style="border:4px solid #3c8033">
+    <div>
+      <mymarquee my-tick="{{newsTick}}" my-content="{{localNews}}" my-index="0"></mymarquee>
+    </div>
+  </td>
   </tr>
 </table>
-</div>
 
 </div>
 
-<footer class="navbar-default navbar-fixed-bottom" style="background-color: black;">
+</div>
+
+<footer class="navbar-default navbar-fixed-bottom">
   <div id="container">
       a <img src="assets/images/bitcalculus_logo.gif"> project 2015
   </div>

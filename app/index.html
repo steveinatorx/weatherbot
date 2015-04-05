@@ -38,6 +38,11 @@
        ga('send', 'pageview');
     </script>
 
+    <!--todo: bower-ize this? -->
+    <!-- Google Feeds script -->
+    <script type="text/javascript"
+            src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script>
+
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -66,6 +71,11 @@
         <script src="scripts/services/iconservice.js"></script>
         <script src="scripts/directives/weathericon.js"></script>
         <script src="scripts/filters/wordbreak.js"></script>
+        <script src="scripts/services/feedservice.js"></script>
+        <script src="scripts/services/feedcache.js"></script>
+        <script src="scripts/directives/marquee.js"></script>
+        <script src="scripts/filters/minmaxstring.js"></script>
+        <script src="scripts/services/httpinterceptor.js"></script>
         <!-- endbuild -->
 </body>
 </html>
