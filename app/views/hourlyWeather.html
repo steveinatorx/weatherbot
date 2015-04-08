@@ -4,17 +4,19 @@
     <td class="col-xs-1" style="padding:4px;border:3px solid white;" ng-repeat="hour in data track by $index">x</td>
   </tr>-->
   <tr class="row-fluid">
-    <td class="col-xs-1" style="height:100%;padding:4px;border:3px solid #3085a3;" ng-repeat="hour in data track by $index">
-      <div class="pull-left" style="width:88%">
-      {{hour.local_time}}<weather-icon data-condition="{{hour.local_icon }}"></weather-icon>
-      <small><span ng-bind-html="hour.condition | wordBreak"></span></small><br>
-      {{hour.temp.english}}&deg</div>
+    <td class="" style="height:100%;padding:4px;border:3px solid #3085a3;" ng-repeat="hour in data track by $index">
+      <div class="weather row">
+          <div class="col-xs-10">
+              {{hour.local_time}}<weather-icon data-condition="{{hour.local_icon }}"></weather-icon>
+              <small><span ng-bind-html="hour.condition | wordBreak"></span></small><br>
+              {{hour.temp.english}}&deg
+          </div>
+      <div class="col-xs-2" style="height:110px;background-color:#2f3238">
 
-        <div class="pull-right" style="width:10%;height:110px;background-color:#2f3238">
 
           <div style="width:100%;height:{{hour.temp.english}}px;background-color:#3085a3"></div>
         </div>
-
+      </div>
     </td>
   </tr>
 </table>

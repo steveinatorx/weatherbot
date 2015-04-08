@@ -1,9 +1,8 @@
 $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "../../bower_components/components-font-awesome/scss/font-awesome.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
-
 
 body {
     background-color: #2f3238;
@@ -32,8 +31,6 @@ body {
   font-family: 'Raleway';
   src: url('/assets/fonts/Raleway-Regular.ttf')  format('truetype');
 }
-
-
 
 #fadingBarsG{
 position:relative;
@@ -402,4 +399,11 @@ background-color:#000000;
 
 }
 */
-.row .col-xs-2, .row .col-xs-10{display:inline-block; float: none}
+
+.weather {
+  .row .col-xs-2, .row .col-xs-10 {
+    display: inline-block;
+    float: none;
+  }
+}
+
