@@ -1,7 +1,7 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "components-font-awesome/scss/font-awesome.scss";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../../bower_components/components-font-awesome/scss/font-awesome.scss";
 // endbower
 
 
@@ -402,3 +402,4 @@ background-color:#000000;
 
 }
 */
+.row .col-xs-2, .row .col-xs-10{display:inline-block; float: none}
