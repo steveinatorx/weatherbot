@@ -12,7 +12,7 @@ angular.module('weatherbotApp')
    var CACHE_INTERVAL = 1000 * 60 * 5; //5 minutes
   function cacheTimes() {
     if ('CACHE_TIMES' in localStorage) {
-      return angular.fromJson(localStorage['CACHE_TIMES']);
+      return angular.fromJson(localStorage.CACHE_TIMES);
     }
     return {};
   }
@@ -25,7 +25,7 @@ angular.module('weatherbotApp')
       localStorage[name] = angular.toJson(obj);
       var CACHE_TIMES = cacheTimes();
       CACHE_TIMES[name] = new Date().getTime();
-      localStorage['CACHE_TIMES'] = angular.toJson(CACHE_TIMES);
+      localStorage.CACHE_TIMES = angular.toJson(CACHE_TIMES);
     },
     get: function (name) {
       if (hasCache(name)) {

@@ -12,7 +12,7 @@ angular.module('weatherbotApp')
   .filter('wordBreak', function () {
     return function (input) {
 
-      var treated =  input.split(/\s+/).length<2 ? input+"<br>":input;
+      var treated =  input.split(/\s+/).length<2 ? input+'<br>':input;
       return treated;
     };
   });

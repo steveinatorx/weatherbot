@@ -32,9 +32,9 @@
      <h2 class="digital" style="display:inline-block">{{currentWeather.temp_f}}&deg;&nbsp;{{currentWeather.weather}}
      </h2>
 <!-- <load-Animation></load-Animation>-->
-     <hourly-Weather data="hourlyWeatherA"></hourly-Weather>
+     <hourly-Weather data="hourlyWeatherA" meta="hourlyMetaA"></hourly-Weather>
      <br>
-     <hourly-Weather data="hourlyWeatherB"></hourly-Weather>
+     <hourly-Weather data="hourlyWeatherB" meta="hourlyMetaB"></hourly-Weather>
 
 
 </div>
@@ -46,7 +46,7 @@
 -->
 
 <div class="container">
-<table style="margin-top:5px">
+<table style="margin-top:5px; width:100%">
   <tr>
     <td style="background-color:#3c8033;border:4px solid #3c8033" class="col-xs-2">bay news</td>
     </td><td class="col-xs-10" style="border:4px solid #3c8033">
@@ -56,11 +56,20 @@
   </td>
   </tr>
 </table>
-
 </div>
-
+<div class="container">
+<table style="margin-top:5px; width:100%">
+  <tr>
+    <td style="background-color:#802f31;border:4px solid #802f31;" class="col-xs-2">bay sports</td>
+    </td><td class="col-xs-10" style="border:4px solid #802f31;">
+    <div>
+      <mymarquee my-tick="{{sportsTick}}" my-content="{{localSports}}" my-index="0"></mymarquee>
+    </div>
+  </td>
+  </tr>
+</table>
 </div>
-
+</div>
 <footer class="navbar-default navbar-fixed-bottom">
   <div id="container">
       a <img src="assets/images/bitcalculus_logo.gif"> project 2015

@@ -11,13 +11,14 @@
 angular.module('weatherbotApp')
   .filter('minMaxString', function () {
     return function (input) {
-      if(typeof input === 'undefined') return '';
+      if(typeof input === 'undefined') {
+        return '';}
       var len=input.length;
 
       if (len<100){
         //pad
-        //console.log('len?'+len)
-        return input+Array(103 - input.length).join('x');
+        var padArr = new Array(103 - input.length).join(' ');
+        return input+padArr;
 
       }else {
 

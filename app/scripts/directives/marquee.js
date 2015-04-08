@@ -42,6 +42,7 @@ angular.module('weatherbotApp')
 
               //var targetIdx = parseInt(attrs["myIndex"]);
               var contentObj = eval(attrs['myContent']);
+              console.log('observed myCOntent change',contentObj)
               scope.targetA=contentObj[scope.targetIdx].title;
               scope.targetHide=false;
               //console.log(contentObj[0]);

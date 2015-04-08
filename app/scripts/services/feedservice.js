@@ -23,11 +23,16 @@ angular.module('weatherbotApp')
         if (feedCache.hasCache(feedURL)) {
           return deferred.resolve(sanitizeFeedEntry(feedCache.get(feedURL)));
         }
+
+        console.info('is google obj loaded?', typeof google);
         var feed = new google.feeds.Feed(feedURL);
+
         if (count) {
           feed.includeHistoricalEntries();
           feed.setNumEntries(count);
         }
+
+
         feed.load(function (response) {
           if (response.error) {
             deferred.reject(response.error);

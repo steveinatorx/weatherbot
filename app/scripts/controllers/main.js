@@ -10,20 +10,59 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, $interval, geolocation, localStorageService, ENV, lodash, weatherApi, feedService) {
+  .controller('MainCtrl', function ($scope, $log, $interval, $q, geolocation, localStorageService, ENV, lodash, weatherApi, feedService) {
 
+ /* getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-487.php').then(function(feedData){
+    console.log('DEBUG',data);
+  })*/
+  function getFeed(url){
+    var deferred=$q.defer();
+    feedService.getFeeds(url,15)
+      .then(function (feedsObj) {
+        var feed=lodash.map(feedsObj,function(feedObj){
+          //console.log('in map',feedObj.title.toString());
+          return {title:feedObj.title.toString()};
+        });
+        return deferred.resolve(feed);
+    },function (error) {
+      console.error('Error loading feed ', error);
+      $scope.error = error;
 
-  $scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
+        return deferred.reject(error);
+    });
+    return deferred.promise;
+  }
+
+    getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-487.php').then(function(feed){
+     $scope.localSports=feed;
+    });
+
+    getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php').then(function(feed){
+     $scope.localNews=feed;
+    });
+    //$scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
   $scope.newsTick=false;
+  $scope.sportsTick=false;
+
+$interval(function(){
+    //todo: put into dynamic constants
+    $scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
+  },1000*500);
 
   $interval(function(){
     //todo: put into dynamic constants
-    $scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
+    $scope.localSports=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-487.php');
   },1000*600);
 
   $interval(function(){
     $scope.newsTick=!$scope.newsTick;
   },5000);
+
+   $interval(function(){
+    $scope.sportsTick=!$scope.sportsTick;
+  },5500);
+
+
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
@@ -45,6 +84,15 @@ angular.module('weatherbotApp')
 
               return hr;
         });
+
+
+        $scope.hourlyMetaA=lodash.filter(lodash.slice(data.hourly_forecast,0,12), function(hr){
+
+            return hr.FCTTIME.civil;
+        });
+
+        console.log('hourly meta?',$scope.hourlyMetaA)
+
          $scope.hourlyWeatherB=lodash.map(lodash.slice(data.hourly_forecast,12,24), function(hr){
             hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
             hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
@@ -94,23 +142,6 @@ angular.module('weatherbotApp')
        $scope.geo=localStorageService.get('geo');
        return true;
      }
-  }
-
-  function getFeed(url){
-    feedService.getFeeds(url,15)
-      .then(function (feedsObj) {
-        console.log('feeds obj?',feedsObj[0].title.toString());
-
-        $scope.localNews=lodash.map(feedsObj,function(feedObj){
-
-          return {title:feedObj.title.toString()};
-
-        })
-
-    },function (error) {
-      console.error('Error loading feed ', error);
-      $scope.error = error;
-    })
   }
 
 });

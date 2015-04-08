@@ -10,6 +10,7 @@
  */
 angular
   .module('weatherbotApp', [
+    'ngMockE2E',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -32,9 +33,10 @@ angular
         redirectTo: '/'
       });
 
+  }).run(function ($httpBackend) {
 
-  })
-  .run(function (){
+    $httpBackend.whenGET(/^.*/).passThrough();
+    $httpBackend.whenJSONP(/^.*/).passThrough();
     /*
     if(ENV.mockApi === true) {
         console.log('injected interceptor!!!!!!!')
@@ -43,4 +45,3 @@ angular
     }*/
 
   });
-
