@@ -1,7 +1,7 @@
 $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "components-font-awesome/scss/font-awesome.scss";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../../bower_components/components-font-awesome/scss/font-awesome.scss";
 // endbower
 
 body {
@@ -21,15 +21,11 @@ body {
     margin: 0.2em;
 }
 
-@font-face {
-  font-family: 'DS-DIGIT';
-  src: url('/assets/fonts/DS-DIGI.ttf')  format('truetype');
-}
 
 
 @font-face {
   font-family: 'Raleway';
-  src: url('/assets/fonts/Raleway-Regular.ttf')  format('truetype');
+  src: url('../assets/fonts/Raleway-Regular.ttf')  format('truetype');
 }
 
 #fadingBarsG{
