@@ -10,11 +10,12 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, $interval, $q, geolocation, localStorageService, ENV, lodash, weatherApi, feedService) {
+  .controller('MainCtrl', function ($scope, $log, $interval, $q, geolocation, localStorageService, ENV, lodash, weatherApi, feedService, socket) {
 
  /* getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-487.php').then(function(feedData){
     console.log('DEBUG',data);
   })*/
+
   function getFeed(url){
     var deferred=$q.defer();
     feedService.getFeeds(url,15)
@@ -35,12 +36,13 @@ angular.module('weatherbotApp')
 
     getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-487.php').then(function(feed){
      $scope.localSports=feed;
+     $scope.sportsTick=!$scope.sportsTick;
     });
 
     getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php').then(function(feed){
      $scope.localNews=feed;
+     $scope.newsTick=!$scope.newsTick;
     });
-    //$scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
   $scope.newsTick=false;
   $scope.sportsTick=false;
 
@@ -61,8 +63,6 @@ $interval(function(){
    $interval(function(){
     $scope.sportsTick=!$scope.sportsTick;
   },5500);
-
-
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
@@ -91,7 +91,7 @@ $interval(function(){
             return hr.FCTTIME.civil;
         });
 
-        console.log('hourly meta?',$scope.hourlyMetaA)
+        console.log('hourly meta?',$scope.hourlyMetaA);
 
          $scope.hourlyWeatherB=lodash.map(lodash.slice(data.hourly_forecast,12,24), function(hr){
             hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
@@ -105,13 +105,30 @@ $interval(function(){
 
   $scope.alerts=[];
 
+
   function init() {
+
+    $scope.$watch('geo', function(oldVal, newVal){
+        $log.log('#####geo ticked',newVal,oldVal);
+
+        if((newVal!==oldVal)&&(typeof newVal !== 'undefined'))
+        {
+
+          //check if this distance is x threshold from oldVal to account for moving clients
+
+        }
+
+
+    }, true);
+
     if (typeof ENV.wundergroundApiKey === 'undefined') {
         addAlert({'msg':'Error! missing the WUNDERGROUNDAPIKEY environment variable. get one here <a href="http://www.wunderground.com/weather/api/"> wunderground api </a> and set this in your environment to run the weather API calls','type':'danger'});
     }
     if(!assertGeoAuth()) {
       getGeo();
     }
+
+
   }
   init();
 

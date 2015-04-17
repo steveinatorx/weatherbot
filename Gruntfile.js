@@ -458,6 +458,7 @@ module.exports = function (grunt) {
         'clean:server',
         'ngconstant:development',
         'wiredep',
+        'jshint:all',
         'concurrent:server',
         'autoprefixer:server',
         'connect:livereload',

@@ -21,7 +21,8 @@ angular
     'config',
     'geolocation',
     'LocalStorageModule',
-    'ngLodash'
+    'ngLodash',
+    'btford.socket-io'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -60,9 +60,10 @@
     <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-<script src="/scripts/config.js"></script>
+<script src="config/config.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
@@ -74,7 +75,12 @@
         <script src="scripts/filters/wordbreak.js"></script>
         <script src="scripts/services/feedservice.js"></script>
         <script src="scripts/services/feedcache.js"></script>
+        <script src="scripts/directives/loadanimation.js"></script>
         <script src="scripts/directives/marquee.js"></script>
+        <script src="scripts/services/socketfactory.js"></script>
         <!-- endbuild -->
+
+    <script src="bower_components/socket.io-client/socket.io.js"></script>
+
 </body>
 </html>

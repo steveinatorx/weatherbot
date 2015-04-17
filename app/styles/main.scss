@@ -21,8 +21,6 @@ body {
     margin: 0.2em;
 }
 
-
-
 @font-face {
   font-family: 'Raleway';
   src: url('../assets/fonts/Raleway-Regular.ttf')  format('truetype');
@@ -38,7 +36,7 @@ display:inline-block;
 .fadingBarsG{
 position:absolute;
 top:0;
-background-color:#00FF00;
+background-color:#3085a3;
 width:12px;
 height:12px;
 -moz-animation-name:bounce_fadingBarsG;
@@ -143,12 +141,12 @@ animation-delay:2.2s;
 @-moz-keyframes bounce_fadingBarsG{
 0%{
 -moz-transform:scale(1);
-background-color:#00FF00;
+background-color:#3085a3;
 }
 
 100%{
 -moz-transform:scale(.3);
-background-color:#000000;
+background-color:#333333;
 }
 
 }
@@ -156,12 +154,12 @@ background-color:#000000;
 @-webkit-keyframes bounce_fadingBarsG{
 0%{
 -webkit-transform:scale(1);
-background-color:#00FF00;
+background-color:#3085a3;
 }
 
 100%{
 -webkit-transform:scale(.3);
-background-color:#000000;
+background-color:#333333;
 }
 
 }
@@ -169,12 +167,12 @@ background-color:#000000;
 @-ms-keyframes bounce_fadingBarsG{
 0%{
 -ms-transform:scale(1);
-background-color:#00FF00;
+background-color:#3085a3;
 }
 
 100%{
 -ms-transform:scale(.3);
-background-color:#000000;
+background-color:#333333;
 }
 
 }
@@ -182,12 +180,12 @@ background-color:#000000;
 @-o-keyframes bounce_fadingBarsG{
 0%{
 -o-transform:scale(1);
-background-color:#00FF00;
+background-color:#3085a3;
 }
 
 100%{
 -o-transform:scale(.3);
-background-color:#000000;
+background-color:#333333;
 }
 
 }
@@ -195,12 +193,12 @@ background-color:#000000;
 @keyframes bounce_fadingBarsG{
 0%{
 transform:scale(1);
-background-color:#00FF00;
+background-color:#3085a3;
 }
 
 100%{
 transform:scale(.3);
-background-color:#000000;
+background-color:#333333;
 }
 
 }
@@ -397,7 +395,7 @@ background-color:#000000;
 */
 
 .weather {
-  .row .col-xs-2, .row .col-xs-10 {
+  .col-xs-2, .col-xs-10 {
     display: inline-block;
     float: none;
   }

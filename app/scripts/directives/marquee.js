@@ -9,40 +9,44 @@
 angular.module('weatherbotApp')
   .directive('mymarquee', function () {
     return {
-      template: '<p ng-show="targetHide">{{targetA | minMaxString}}</p>',
+      template: '<p ng-show="targetHide">{{targetA}}</p>',
       restrict: 'E',
       scope: {
-        data:"=",
-        tick:"=",
-        index:"="
+        data:'=',
+        tick:'=',
+        index:'='
       },
       link: function postLink(scope, element, attrs) {
 
-          var targetIdx = parseInt(attrs["myIndex"]);
+          var targetIdx = parseInt(attrs.myIndex);
           scope.targetIdx=targetIdx;
 
-        attrs.$observe('myTick',function(newVal){
-          var hide=attrs["myTick"];
+        attrs.$observe('myTick',function(){
+          //var hide=attrs.myTick;
           scope.targetHide=true;
 
-          if(attrs['myContent'] != "") {
-            var contentObj = eval(attrs['myContent']);
+          if(attrs.myContent !== '') {
+
+            //console.log('attrs.myContent=',JSON.parse(attrs.myContent));
+            var contentObj = JSON.parse(attrs.myContent);
             var contentLen = contentObj.length;
             //scope.targetIdx+=2;
               scope.targetA=contentObj[scope.targetIdx].title;
               //scope.targetB=contentObj[scope.targetIdx+1];
               scope.targetIdx+=1;
               //scope.targetHide=(hide==='true')?true:false;
-              if(scope.targetIdx>(contentLen-1)) scope.targetIdx=0;
+              if (scope.targetIdx>(contentLen-1)) {
+                scope.targetIdx = 0;
+              }
           }
         });
-        attrs.$observe('myContent',function(newVal){
+        attrs.$observe('myContent',function(){
 
-            if(attrs['myContent'] != "") {
+            if(attrs.myContent !== '') {
 
               //var targetIdx = parseInt(attrs["myIndex"]);
-              var contentObj = eval(attrs['myContent']);
-              console.log('observed myCOntent change',contentObj)
+              var contentObj = JSON.parse(attrs.myContent);
+              //console.log('observed myContent change',contentObj);
               scope.targetA=contentObj[scope.targetIdx].title;
               scope.targetHide=false;
               //console.log(contentObj[0]);
@@ -52,5 +56,5 @@ angular.module('weatherbotApp')
         //scope.text='farl';
         //element.text('this is the marquee directive');
       }
-    }
+    };
   });
