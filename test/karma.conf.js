@@ -35,6 +35,8 @@ module.exports = function(config) {
       'bower_components/ng-lodash/build/ng-lodash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-socket-io/socket.js',
+      'bower_components/angular-uuid-service/angular-uuid-service.js',
+      'bower_components/angular-google-maps/dist/angular-google-maps.js',
       // endbower
         //pick up config.js
       'https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D',

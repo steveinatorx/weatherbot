@@ -22,9 +22,11 @@ angular
     'geolocation',
     'LocalStorageModule',
     'ngLodash',
-    'btford.socket-io'
+    'btford.socket-io',
+    'uuid',
+    'uiGmapgoogle-maps'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider,uiGmapGoogleMapApiProvider ) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -33,6 +35,12 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+    uiGmapGoogleMapApiProvider.configure({
+      key: 'AIzaSyBL9J7aT7oeMrQHT_SdGgDL7AG9_KNfqj8',
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
+    });
 
   }).run(function ($httpBackend) {
 

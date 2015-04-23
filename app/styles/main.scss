@@ -10,7 +10,7 @@ body {
     font-size: 18px;
     width: 100%;
     overflow-x: hidden;
-    font-family: Raleway
+    font-family: Raleway;
 }
 
 .blue {
@@ -25,6 +25,16 @@ body {
   font-family: 'Raleway';
   src: url('../assets/fonts/Raleway-Regular.ttf')  format('truetype');
 }
+
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url('../assets/fonts/Raleway-Bold.ttf')  format('truetype');
+}
+
+.bold{
+  font-family: Raleway-Bold;
+}
+
 
 #fadingBarsG{
 position:relative;
@@ -400,4 +410,14 @@ background-color:#333333;
     float: none;
   }
 }
+.angular-google-map, .angular-google-map-container { height: 300px; width:300px; display:inline-block; }
+
+.ib {
+  display:inline-block;
+}
+
+table.headerTable td {
+    padding:10px;
+}
+
 

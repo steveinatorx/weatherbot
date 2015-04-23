@@ -12,7 +12,7 @@ angular.module('weatherbotApp')
 
         var self = this;
 
-          $log.info('http://api.wunderground.com/api/' + ENV.wundergroundApiKey +'/hourly/q/CA/San_Francisco.json?callback=JSON_CALLBACK');
+        $log.info('http://api.wunderground.com/api/' + ENV.wundergroundApiKey +'/hourly/q/CA/San_Francisco.json?callback=JSON_CALLBACK');
         $log.log('key',ENV.wundergroundApiKey);
 
         self.getCurrentWeather = function() {
@@ -42,11 +42,5 @@ angular.module('weatherbotApp')
           });
         return deferred.promise;
         };
-
-
-
-
-
-
 
 });

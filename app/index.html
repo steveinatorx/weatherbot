@@ -28,7 +28,7 @@
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
+     <!--<script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
@@ -37,12 +37,11 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-
+-->
     <!--todo: bower-ize this? -->
     <!-- Google Feeds script -->
     <script type="text/javascript"
             src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -61,13 +60,14 @@
     <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="bower_components/angular-socket-io/socket.js"></script>
+    <script src="bower_components/angular-uuid-service/angular-uuid-service.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 <script src="config/config.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/weatherapi.js"></script>
         <script src="scripts/directives/hourlyweather.js"></script>
         <script src="scripts/services/iconservice.js"></script>
@@ -78,9 +78,9 @@
         <script src="scripts/directives/loadanimation.js"></script>
         <script src="scripts/directives/marquee.js"></script>
         <script src="scripts/services/socketfactory.js"></script>
+        <script src="scripts/services/dispatchservice.js"></script>
         <!-- endbuild -->
-
+    <!--oddly had to manually include this?-->
     <script src="bower_components/socket.io-client/socket.io.js"></script>
-
 </body>
 </html>
