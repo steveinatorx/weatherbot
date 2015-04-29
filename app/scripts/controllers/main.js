@@ -170,11 +170,11 @@ $interval(function(){
       console.log('watch ticd',oldVal);
 
 
-      $scope.markers.push[{id:0,
+      $scope.markers.push({id:0,
         coords: {
           latitude: newVal.lat,
           longitude: newVal.lon
-        }}];
+        }});
 
 
 
