@@ -3,18 +3,13 @@
   <tr class="row-fluid">
     <td class="col-xs-1" style="padding:4px;border:3px solid white;" ng-repeat="hour in data track by $index">x</td>
   </tr>-->
-  <tr class="fluid-row">
-    <td class="" style="height:100%;padding:4px;border:3px solid #3085a3;" ng-repeat="hour in data track by $index">
-        <div class="row" style="position:relative">
-          <div class="weather col-xs-8" style="padding-right:1px;">
-              {{hour.local_time}}<weather-icon data-condition="{{hour.local_icon }}"></weather-icon>
+  <tr class="">
+    <td class="" style="white-space: wrap;vertical-align:top;height:100%;padding:4px;border:3px solid #3085a3" ng-repeat="hour in data track by $index">
+              {{hour.local_time}}<weather-icon data-condition="{{hour.local_icon }}"></weather-icon><br>
               <small><span ng-bind-html="hour.condition | wordBreak"></span></small><br>
               {{hour.temp.english}}&deg
-          </div>
-          <div class="weather" style="position:absolute;padding:0px;bottom:-4px;right:15px;height:100%;width:10px;background-color:red">
-           <div style="height:{{hour.temp.english}}%;background-color:blue"></div>
-
-      </div>
+          <!--<div class="weather" style="position:absolute;padding:0px;bottom:-4px;right:15px;height:100%;width:10px;background-color:red">
+           <div style="height:{{hour.temp.english}}%;background-color:blue"></div>-->
     </td>
   </tr>
 </table>

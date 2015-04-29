@@ -1,39 +1,52 @@
+<div>
+  <div style="padding:5px;margin-bottom:5px" class="alert alert-danger" ng-class="{fade:doAlertFade}" ng-if="showAlert">
+    <span ng-bind-html="alertMsg"></span>
+  </div>
+
 <table class="headerTable">
   <tr>
     <td style="vertical-align:top;width:50%;">
-      <img src="/assets/images/robot.png" style="width:50px"><h2 class="ib blue bold">weather bot beta</h2>
+      <img src="/assets/images/robot.png" style="width:50px"><span class="blue bold">{{data.geo.lat}}, {{data.geo.lon}}</span>
+      <h2 style="margin-bottom:3px; margin-top:3px" class= "blue" ng-show="data.weather"><weather-icon data-condition="{{weather.local_icon }}"></weather-icon>{{data.weather}} &nbsp; {{data.temp}}&deg;&nbsp; </h2>
+
+      <div ng-show="data.weather">
+      humidity: {{data.humidity}}<br>
+      wind: {{data.wind_string}}<br>
+      visibility: {{data.visibility}} miles
+      </div>
     </td>
     <td style="width:25%">
      <div style="position:relative">
-        <div  style="position:absolute; z-index:999; top:150px; left:50px;" ng-show="!mapReady"><load-Animation/></div><span><ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map></span>
+        <div  style="position:absolute; z-index:999; top:150px; left:50px;" ng-show="!mapReady"><load-Animation/></div>
+       <span><ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
+       <ui-gmap-markers models="markers" coords="'coords'">
+          </ui-gmap-markers></ui-gmap-google-map></span>
      </div>
-    </td>
-    <td style="width:25%">
-      <img src="http://api.wunderground.com/api/de30279bddde0f9c/animatedradar/q/CA/San_Francisco.gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=50">
     </td>
   </tr>
 </table>
 
-<div class="container">
-  <span class="span12">
-  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">    <span ng-bind-html="alert.msg"></span></alert>
-  </span>
-</div>
+  <table>
+    <tr>
+     <td>
+        <div>
+             <hourly-Weather data="hourlyWeatherA" meta="hourlyMetaA"></hourly-Weather>
+             <br>
+             <hourly-Weather data="hourlyWeatherB" meta="hourlyMetaB"></hourly-Weather>
+        </div>
+     </td>
+      <td style="width:30%;padding-left:50px" ng-show="hourlyWeatherA">
+        <img src="http://api.wunderground.com/api/de30279bddde0f9c/animatedradar/q/CA/San_Francisco.gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=50">
+      </td>
+   </tr>
+</table>
 
-<div class="container">
-     <h2 style="display:inline-block;margin:4px">{{currentWeather.temp_f}}&deg;&nbsp;{{currentWeather.weather}}</h2><br>
-     <h2 style="display:inline-block;margin:4px">wind:</h2>&nbsp;{{currentWeather.wind_string}}
-<!-- <load-Animation></load-Animation>-->
-     <hourly-Weather data="hourlyWeatherA" meta="hourlyMetaA"></hourly-Weather>
-     <br>
-     <hourly-Weather data="hourlyWeatherB" meta="hourlyMetaB"></hourly-Weather>
-</div>
 <!--
 <div ng-repeat="hour in hourlyWeather" >
   {{hour.hour}}
 </div>
 -->
-<div class="container">
+<div>
 <table style="margin-top:5px; width:100%">
   <tr>
     <td style="background-color:#3c8033;border:4px solid #3c8033" class="col-xs-2">bay news</td>
@@ -45,7 +58,7 @@
   </tr>
 </table>
 </div>
-<div class="container">
+<div>
 <table style="margin-top:5px; width:100%" ng-show="{{!localSports}}">
   <tr>
     <td style="background-color:#802f31;border:4px solid #802f31;" class="col-xs-2">bay sports news</td>
@@ -57,6 +70,8 @@
   </tr>
 </table>
 </div>
+</div>
+
 </div>
 <footer class="navbar-default navbar-fixed-bottom">
   <div id="container">

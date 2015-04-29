@@ -18,7 +18,8 @@ body {
 }
 
 .container {
-    margin: 0.2em;
+  margin:5px;
+  width: 98%;
 }
 
 @font-face {
@@ -410,7 +411,7 @@ background-color:#333333;
     float: none;
   }
 }
-.angular-google-map, .angular-google-map-container { height: 300px; width:300px; display:inline-block; }
+.angular-google-map, .angular-google-map-container { height: 300px; width:600px; display:inline-block; }
 
 .ib {
   display:inline-block;
@@ -418,6 +419,24 @@ background-color:#333333;
 
 table.headerTable td {
     padding:10px;
+}
+
+@keyframes fadeOut
+{
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
+}
+
+@-webkit-keyframes fadeOut
+{
+  from { opacity: 1.0 }
+  to { opacity: 0.0 }
+}
+
+.fade-out
+{
+  animation: fadeOut 2s infinite;
+  -webkit-animation: fadeOut 2s infinite;
 }
 
 

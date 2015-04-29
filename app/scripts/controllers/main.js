@@ -1,6 +1,8 @@
 'use strict';
 
 /*jshint camelcase: false */
+/*global google*/
+
 
 /**
  * @ngdoc function
@@ -10,11 +12,12 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, $interval, $q, $http, geolocation, localStorageService, ENV, lodash, weatherApi, feedService, mySocket, dispatchService, rfc4122, uiGmapGoogleMapApi, uiGmapIsReady) {
+  .controller('MainCtrl', function ($scope, $log, $interval, $q, $http, $timeout, geolocation, localStorageService, ENV, lodash, weatherApi, feedService, mySocket, dispatchService, rfc4122, uiGmapGoogleMapApi, uiGmapIsReady) {
 
   $scope.sentGetTopics=false;
   $scope.data={};
   $scope.mapReady=false;
+  $scope.markers=[];
 
   function getFeed(url){
     var deferred=$q.defer();
@@ -64,17 +67,21 @@ $interval(function(){
     $scope.sportsTick=!$scope.sportsTick;
   },5500);
 
-  /*$scope.$watch('geo',function() {
+  $scope.$watch('geo',function() {
     $log.log('geo ticked');
 
     weatherApi.getCurrentWeather()
       .then(function(data){
         $scope.currentWeather = data.current_observation;
-      });*/
-    /*
+      });
+/*
     weatherApi.getHourlyWeather()
     .then(function(data) {
       //$log.info(data.hourly_forecast);
+
+
+
+
         $scope.hourlyWeatherA=lodash.map(lodash.slice(data.hourly_forecast,0,12), function(hr){
             hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
             hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
@@ -96,8 +103,11 @@ $interval(function(){
         });
         //$scope.hourlyWeather=data.hourly_forecast;
     });
+    */
+
+
   }, true);
-*/
+
   $scope.alerts=[];
   //asynch load
 
@@ -136,14 +146,38 @@ $interval(function(){
 
   function init() {
 
+    $scope.$on('tickCurrentWeather',function(){
+          var rawWeather=dispatchService.getCurrentWeather();
+          $log.info('tickCurrentWeather!!!!!!!',rawWeather.weather);
+
+          lodash.merge($scope.data, rawWeather);
+
+            $log.info('vis?????',$scope.data.visibility);
+          /*
+          $scope.data.weather=rawWeather.weather;
+          $scope.data.temp=rawWeather.temp;
+          $scope.data.icon_url=rawWeather.icon_url;
+          $scope.data.visibility=rawWeather.visibility;
+          $scope.data.*/
+    });
+
     //todo: this would become a throwaway token upon impl of auth/identity
-    //$scope.uuid=rfc4122.v4();
     $scope.data.clientId=rfc4122.v4();
 
     $scope.$watch('data.geo', function(newVal,oldVal){
 
       console.log('watch ticd',newVal);
       console.log('watch ticd',oldVal);
+
+
+      $scope.markers.push[{id:0,
+        coords: {
+          latitude: newVal.lat,
+          longitude: newVal.lon
+        }}];
+
+
+
       if(($scope.sentGetTopics===false)&&(typeof newVal !== 'undefined')) {
         $log.log('#####geo tic',newVal);
 
@@ -184,7 +218,16 @@ $interval(function(){
   init();
 
   function addAlert(alert) {
-    $scope.alerts.push(alert);
+    $scope.doAlertFade=false;
+
+    $scope.showAlert=true;
+    $scope.alertMsg=alert.msg;
+    $timeout(function(){
+      $scope.doAlertFade = true;
+      $scope.showAlert=false;
+    }, 5000);
+
+
   }
 
   $scope.getGeo = function() {
@@ -193,8 +236,8 @@ $interval(function(){
      });
   };
 
-  $scope.closeAlert = function(index) {
-    $scope.alerts.splice(index, 1);
+  $scope.closeAlert = function() {
+    $scope.showAlert=false;
   };
 
   function getGeo() {
@@ -203,25 +246,51 @@ $interval(function(){
     console.log('in getGeo');
     geolocation.getLocation().then(function(data){
        $scope.data.geo = {lat:data.coords.latitude, lon:data.coords.longitude};
-       localStorageService.set('geo',$scope.geo);
-       localStorageService.set('authorizedGeo',true);
+       localStorageService.set('geo',$scope.data.geo);
+
+        $log.info('trying to set localStore.geo',localStorageService.get('geo'));
+
        deferred.resolve();
       },function(err){
         $log.error('geo failed/refused',err);
         deferred.reject();
     });
-
     return deferred.promise;
   }
 
   function assertGeoAuth() {
-
-    if(typeof localStorageService.get('geo') === 'undefined' || localStorageService.get('authorizedGeo') === '0' ||  localStorageService.get('geo') === null ) { return false;
+    $log.info('in assertGeoAuth',localStorageService.get('geo'));
+    if(typeof localStorageService.get('geo') === 'undefined' || localStorageService.get('geo') === null) {
+      return false;
     } else {
-
+      addAlert({'msg':'<strong>retrieved geolocation from local storage..</strong>','type':'danger'});
        $scope.data.geo=localStorageService.get('geo');
        return true;
      }
   }
+
+
+   function setMarker(data){
+      $log.info('setMarker',data);
+     $scope.markers.push({
+       id: $scope.markers.length+1,
+       coords: {
+         latitude: data.display_location.latitude,
+         longitude: data.display_location.longitude
+        }});
+   }
+
+   //watch markers
+   $scope.$on('setPoi',function() {
+     var poi=dispatchService.getPoi();
+
+      lodash.each(poi,function(p){
+        setMarker(p);
+      });
+
+   });
+
+
+
 
 });
