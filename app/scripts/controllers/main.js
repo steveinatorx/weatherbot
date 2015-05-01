@@ -117,13 +117,20 @@ $interval(function(){
     });
 
   uiGmapGoogleMapApi.then(function() {
-         var mapOptions = {
+         /*var mapOptions = {
            panControl: false,
            zoomControl: false,
            scaleControl: false,
            mapTypeControl: true,
            mapTypeId: google.maps.MapTypeId.ROADMAP
-         };
+         };*/
+
+    var mapOptions = {
+
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+
+    };
+
 
     $log.warn('gmaps api loaded');
       $scope.$watch('data.geo', function(val) {
@@ -174,9 +181,14 @@ $interval(function(){
         coords: {
           latitude: newVal.lat,
           longitude: newVal.lon
-        }});
+        },
+        options: {
+          labelContent: 'YOU ARE HERE',
+          labelClass: 'labels',
+          labelAnchor: '0 22'
 
-
+        }
+      });
 
       if(($scope.sentGetTopics===false)&&(typeof newVal !== 'undefined')) {
         $log.log('#####geo tic',newVal);
