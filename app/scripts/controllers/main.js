@@ -185,7 +185,7 @@ $interval(function(){
         options: {
           labelContent: 'HOME',
           labelClass: 'labels',
-          labelAnchor: '0 -10'
+          labelAnchor: '20 0'
 
         }
       });
@@ -289,6 +289,11 @@ $interval(function(){
        coords: {
          latitude: data.display_location.latitude,
          longitude: data.display_location.longitude
+        },
+        options: {
+          labelContent: data.temp_f+'&deg;',
+          labelClass: 'labels',
+          labelAnchor: '20 0'
         }});
    }
 
@@ -297,7 +302,7 @@ $interval(function(){
      var poi=dispatchService.getPoi();
 
       lodash.each(poi,function(p){
-        //setMarker(p);
+        setMarker(p);
       });
 
    });

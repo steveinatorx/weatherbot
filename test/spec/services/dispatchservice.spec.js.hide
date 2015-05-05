@@ -1,0 +1,18 @@
+'use strict';
+
+describe('Service: dispatchService', function () {
+
+  // load the service's module
+  beforeEach(module('weatherbotApp'));
+
+  // instantiate service
+  var dispatchService;
+  beforeEach(inject(function (_dispatchService_) {
+    dispatchService = _dispatchService_;
+  }));
+
+  it('should do something', function () {
+    expect(!!dispatchService).toBe(true);
+  });
+
+});
