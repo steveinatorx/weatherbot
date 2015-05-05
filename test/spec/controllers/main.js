@@ -1,3 +1,6 @@
+'use strict';
+
+
 describe('Controller: MainCtrl', function () {
 
 
@@ -9,7 +12,7 @@ var socket, mockIoSocket, $controller, geolocation, createController, scope;
     module('weatherbotApp');
 
     module('btford.socket-io');
-    var data = { "coords.latitude": -55, "coords.longitude":127.12342314 };
+    var data = { 'coords.latitude': -55, 'coords.longitude':127.12342314 };
 
     geoMockSvc = {
       getLocation: function() {
@@ -49,7 +52,6 @@ beforeEach(function() {
 });
 
 // Initialize the controller and a mock scope
-
   it('should try to call geolocation.getLocation', function () {
     //console.log(scope);
     expect(scope).toBeDefined();

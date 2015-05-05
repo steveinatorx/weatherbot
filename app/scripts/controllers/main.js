@@ -183,9 +183,9 @@ $interval(function(){
           longitude: newVal.lon
         },
         options: {
-          labelContent: 'YOU ARE HERE',
+          labelContent: 'HOME',
           labelClass: 'labels',
-          labelAnchor: '0 22'
+          labelAnchor: '0 -10'
 
         }
       });
@@ -297,7 +297,7 @@ $interval(function(){
      var poi=dispatchService.getPoi();
 
       lodash.each(poi,function(p){
-        setMarker(p);
+        //setMarker(p);
       });
 
    });
