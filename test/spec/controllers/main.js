@@ -1,42 +1,56 @@
-describe('Controller: MainCtrl', function () { 
+describe('Controller: MainCtrl', function () {
 
-var $controller, geolocation, createController, scope;
- 
+
 beforeEach(function() {
 
-    module('weatherbotApp'); 
 
+var socket, mockIoSocket, $controller, geolocation, createController, scope;
+
+    module('weatherbotApp');
+
+    module('btford.socket-io');
     var data = { "coords.latitude": -55, "coords.longitude":127.12342314 };
 
     geoMockSvc = {
       getLocation: function() {
         return {
-          then: function(data) {} 
+          then: function(data) {}
           };
       }
-    }; 
+    };
 
     module(function($provide){
      $provide.value('geolocation',geoMockSvc);
     });
+
+
 });
 
 beforeEach(function() {
- inject(function($controller, $rootScope, _geolocation_) {
+ inject(function(socketFactory, $controller, $rootScope, _geolocation_) {
       scope = $rootScope.$new();
       geolocation = _geolocation_;
+
+      mockIoSocket = io.connect();
+      console.log(socketFactory);
+
+      socket = socketFactory({
+        ioSocket:mockIoSocket,
+        scope:scope
+      });
+
       createController = function(params) {
         return $controller("MainCtrl", {
           $scope: scope,
           $stateParams: params || {}
         });
       };
-    }); 
+    });
 });
 
-// Initialize the controller and a mock scope 
- 
-  it('should try to call geolocation.getLocation', function () { 
+// Initialize the controller and a mock scope
+
+  it('should try to call geolocation.getLocation', function () {
     //console.log(scope);
     expect(scope).toBeDefined();
     expect(geolocation).toBeDefined();
@@ -45,5 +59,5 @@ beforeEach(function() {
 
     expect(geolocation.getLocation).toHaveBeenCalled();
 
-  }); 
+  });
 });

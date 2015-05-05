@@ -12,8 +12,8 @@ describe('Filter: wordBreak', function () {
   }));
 
   it('should return a one word input with a <br> tag appended:"', function () {
-    var text = 'angularjs';
-    expect(wordBreak(text)).toBe(text+'<br>');
+    var text = 'angular js';
+    expect(wordBreak(text)).toBe('angular<br>js');
   });
 
 });
