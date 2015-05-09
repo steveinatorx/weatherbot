@@ -60,11 +60,18 @@ angular.module('weatherbotApp')
 
           mySocket.on('currentWeather',function(data){
 
-           $log.warn('recd curWeather:',data);
-
             currentWeather=JSON.parse(data);
+
+            //$log.warn('recd curWeather:',data);
+
             $rootScope.$broadcast('tickCurrentWeather');
 
+          });
+
+
+          mySocket.on('sportsTicker',function(data){
+            $log.warn('recd sportsTicker',data);
+            $rootScope.sportsTicker=data;
           });
 
           mySocket.on(initData.clientId+'TopicList',function(data){

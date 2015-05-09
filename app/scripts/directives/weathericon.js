@@ -16,7 +16,7 @@ angular.module('weatherbotApp')
       restrict: 'E',
       link: function($scope, $elm, attrs){
         //console.log(attrs.condition);
-        $scope.wiIconClass='pull-right '+iconService.getIcon(attrs.condition);
+        $scope.wiIconClass=attrs.classList+' '+iconService.getIcon(attrs.condition);
       }
     };
   });

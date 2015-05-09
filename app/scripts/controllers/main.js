@@ -12,14 +12,16 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($scope, $log, $interval, $q, $http, $timeout, geolocation, localStorageService, ENV, lodash, weatherApi, feedService, mySocket, dispatchService, rfc4122, uiGmapGoogleMapApi, uiGmapIsReady) {
+  .controller('MainCtrl', function ($rootScope,$scope, $log, $interval, $q, $http, $timeout, geolocation, localStorageService, ENV, lodash, weatherApi, feedService, mySocket, dispatchService, rfc4122, uiGmapGoogleMapApi, uiGmapIsReady) {
 
   $scope.sentGetTopics=false;
   $scope.data={};
   $scope.mapReady=false;
   $scope.markers=[];
+  var imageIconRe = new RegExp('\.*/([A-Z0-9_-]{1,})\.(?:png|jpg|gif|jpeg)','i');
 
-  function getFeed(url){
+
+    function getFeed(url){
     var deferred=$q.defer();
     feedService.getFeeds(url,15)
       .then(function (feedsObj) {
@@ -48,24 +50,28 @@ angular.module('weatherbotApp')
     });
   $scope.newsTick=false;
   $scope.sportsTick=false;
+  $rootScope.sportsTickerTick=false;
 
 $interval(function(){
     //todo: put into dynamic constants
     $scope.localNews=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-429.php');
   },1000*500);
-
   $interval(function(){
     //todo: put into dynamic constants
     $scope.localSports=getFeed('http://www.sfgate.com/bayarea/feed/Bay-Area-News-487.php');
   },1000*600);
-
   $interval(function(){
     $scope.newsTick=!$scope.newsTick;
   },5000);
-
    $interval(function(){
     $scope.sportsTick=!$scope.sportsTick;
   },5500);
+    $interval(function(){
+    $rootScope.sportsTickerTick=!$rootScope.sportsTickerTick;
+  },3500);
+
+
+
 
   $scope.$watch('geo',function() {
     $log.log('geo ticked');
@@ -73,6 +79,7 @@ $interval(function(){
     weatherApi.getCurrentWeather()
       .then(function(data){
         $scope.currentWeather = data.current_observation;
+
       });
 /*
     weatherApi.getHourlyWeather()
@@ -152,14 +159,17 @@ $interval(function(){
   });
 
   function init() {
-
     $scope.$on('tickCurrentWeather',function(){
           var rawWeather=dispatchService.getCurrentWeather();
           $log.info('tickCurrentWeather!!!!!!!',rawWeather.weather);
 
           lodash.merge($scope.data, rawWeather);
 
-            $log.info('vis?????',$scope.data.visibility);
+
+            $scope.data.local_icon=imageIconRe.exec($scope.data.icon_url)[1];
+
+            $log.info('local_icon',$scope.data.local_icon);
+
           /*
           $scope.data.weather=rawWeather.weather;
           $scope.data.temp=rawWeather.temp;
@@ -183,10 +193,6 @@ $interval(function(){
           longitude: newVal.lon
         },
         options: {
-          labelContent: 'HOME',
-          labelClass: 'labels',
-          labelAnchor: '20 0'
-
         }
       });
 
@@ -283,7 +289,7 @@ $interval(function(){
 
 
    function setMarker(data){
-      $log.info('setMarker',data);
+      //$log.info('setMarker',data);
      $scope.markers.push({
        id: $scope.markers.length+1,
        coords: {
@@ -291,9 +297,10 @@ $interval(function(){
          longitude: data.display_location.longitude
         },
         options: {
+          icon: 'assets/icons/gMapMarker.png',
           labelContent: data.temp_f+'&deg;',
           labelClass: 'labels',
-          labelAnchor: '20 0'
+          labelAnchor: '20 28'
         }});
    }
 
@@ -306,8 +313,6 @@ $interval(function(){
       });
 
    });
-
-
 
 
 });

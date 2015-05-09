@@ -1,18 +1,27 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" style="display:block">
+  <div class="container">
+  </div>
+</nav>
+
+
+
 <div>
   <div style="padding:5px;margin-bottom:5px" class="alert alert-danger" ng-class="{fade:doAlertFade}" ng-if="showAlert">
     <span ng-bind-html="alertMsg"></span>
   </div>
-
-<table class="headerTable">
+<table>
   <tr>
     <td style="vertical-align:top;width:50%;">
-      <img src="/assets/images/robot.png" style="width:50px"><span class="blue bold">{{data.geo.lat}}, {{data.geo.lon}}</span>
-      <h2 style="margin-bottom:3px; margin-top:3px" class= "blue" ng-show="data.weather"><weather-icon data-condition="{{weather.local_icon }}"></weather-icon>{{data.weather}} &nbsp; {{data.temp}}&deg;&nbsp; </h2>
+      <!--<span class="blue bold">{{data.geo.lat}}, {{data.geo.lon}}</span>-->
+      <h1 style="margin-bottom:3px; margin-top:3px" class= "blue bold" ng-if="data.weather">
+        <weather-icon data-condition="{{data.local_icon}}"></weather-icon>
+        {{data.weather}} {{data.temp_f}}&deg;&nbsp;
+      </h1>
 
-      <div ng-show="data.weather">
-      humidity: {{data.humidity}}<br>
+      <div ng-if="data.weather" class="blue bold">
+      humidity: {{data.relative_humidity}}<br>
       wind: {{data.wind_string}}<br>
-      visibility: {{data.visibility}} miles
+      visibility: {{data.visibility_mi}} miles
       </div>
     </td>
     <td style="width:25%">
@@ -25,6 +34,7 @@
     </td>
   </tr>
 </table>
+
 
   <table>
     <tr>
@@ -69,6 +79,18 @@
   </td>
   </tr>
 </table>
+ <table style="margin-top:5px; width:100%" ng-show="{{!sportsTicker}}">
+  <tr>
+    <td style="background-color:blue;border:4px solid blue;" class="col-xs-2">sports scores</td>
+    <td class="col-xs-10" style="border:4px solid blue">
+    <div>
+      <mymarquee my-tick="{{sportsTickerTick}}" my-content="{{sportsTicker}}" my-index="0"></mymarquee>
+    </div>
+  </td>
+  </tr>
+</table>
+
+
 </div>
 </div>
 
