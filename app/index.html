@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Noe Valley App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.css" />
     <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -62,13 +63,15 @@
     <script src="bower_components/angular-socket-io/socket.js"></script>
     <script src="bower_components/angular-uuid-service/angular-uuid-service.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/nv.d3.js"></script>
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 <script src="config/config.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/weatherapi.js"></script>
         <script src="scripts/directives/hourlyweather.js"></script>
         <script src="scripts/services/iconservice.js"></script>
         <script src="scripts/directives/weathericon.js"></script>
@@ -79,6 +82,8 @@
         <script src="scripts/directives/marquee.js"></script>
         <script src="scripts/services/socketfactory.js"></script>
         <script src="scripts/services/dispatchservice.js"></script>
+        <script src="scripts/services/weatherapi.js"></script>
+        <script src="scripts/controllers/weathergraph.js"></script>
         <!-- endbuild -->
     <!--oddly had to manually include this?-->
     <script src="bower_components/socket.io-client/socket.io.js"></script>

@@ -17,6 +17,7 @@ angular.module('weatherbotApp')
         //todo: throw these into a data service
         var self=this;
         var currentWeather=null;
+        var hourlyWeather=null;
         var poi=[];
 
         this.getPoi=function() {
@@ -38,6 +39,10 @@ angular.module('weatherbotApp')
 
         this.getCurrentWeather=function() {
           return  currentWeather;
+        };
+
+        this.getHourlyWeather=function() {
+            return hourlyWeather;
         };
 
         this.initTopics=function(initData){
@@ -62,11 +67,23 @@ angular.module('weatherbotApp')
 
             currentWeather=JSON.parse(data);
 
-            //$log.warn('recd curWeather:',data);
+            $log.warn('recd curWeather:',data);
 
             $rootScope.$broadcast('tickCurrentWeather');
 
           });
+
+           mySocket.on('hourlyWeather',function(data){
+
+            hourlyWeather=JSON.parse(data);
+
+            $log.warn('recd hourlyWeather:',typeof hourlyWeather);
+
+            $rootScope.$broadcast('tickHourlyWeather');
+
+          });
+
+
 
 
           mySocket.on('sportsTicker',function(data){

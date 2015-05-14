@@ -12,14 +12,13 @@
  * Controller of the weatherbotApp
  */
 angular.module('weatherbotApp')
-  .controller('MainCtrl', function ($rootScope,$scope, $log, $interval, $q, $http, $timeout, geolocation, localStorageService, ENV, lodash, weatherApi, feedService, mySocket, dispatchService, rfc4122, uiGmapGoogleMapApi, uiGmapIsReady) {
+  .controller('MainCtrl', function ($rootScope,$scope, $log, $interval, $q, $http, $timeout, geolocation, localStorageService, ENV, lodash, feedService, mySocket, dispatchService, rfc4122, uiGmapGoogleMapApi, uiGmapIsReady, weatherApi) {
 
   $scope.sentGetTopics=false;
   $scope.data={};
   $scope.mapReady=false;
   $scope.markers=[];
   var imageIconRe = new RegExp('\.*/([A-Z0-9_-]{1,})\.(?:png|jpg|gif|jpeg)','i');
-
 
     function getFeed(url){
     var deferred=$q.defer();
@@ -81,39 +80,9 @@ $interval(function(){
         $scope.currentWeather = data.current_observation;
 
       });
-/*
-    weatherApi.getHourlyWeather()
-    .then(function(data) {
-      //$log.info(data.hourly_forecast);
-
-
-
-
-        $scope.hourlyWeatherA=lodash.map(lodash.slice(data.hourly_forecast,0,12), function(hr){
-            hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
-            hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
-              return hr;
-        });
-
-        $scope.hourlyMetaA=lodash.filter(lodash.slice(data.hourly_forecast,0,12), function(hr){
-
-            return hr.FCTTIME.civil;
-        });
-
-        console.log('hourly meta?',$scope.hourlyMetaA);
-
-         $scope.hourlyWeatherB=lodash.map(lodash.slice(data.hourly_forecast,12,24), function(hr){
-            hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
-            hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
-
-              return hr;
-        });
-        //$scope.hourlyWeather=data.hourly_forecast;
-    });
-    */
-
 
   }, true);
+
 
   $scope.alerts=[];
   //asynch load
@@ -170,12 +139,35 @@ $interval(function(){
 
             $log.info('local_icon',$scope.data.local_icon);
 
-          /*
-          $scope.data.weather=rawWeather.weather;
-          $scope.data.temp=rawWeather.temp;
-          $scope.data.icon_url=rawWeather.icon_url;
-          $scope.data.visibility=rawWeather.visibility;
-          $scope.data.*/
+    });
+
+    $scope.$on('tickHourlyWeather',function(){
+
+        var hWeather=lodash.values(dispatchService.getHourlyWeather());
+        $log.info('retrieved hourly weather',lodash.values(hWeather));
+
+      //$scope.hWeatherDataA=[];
+      $scope.hourlyWeatherA=lodash.map(lodash.slice(hWeather,0,12), function(hr){
+          $log.info('hr',hr);
+            hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
+            hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
+              $log.info(hr);
+
+                //$scope.hWeatherDataA.push(hr.temp.english);
+
+              return hr;
+        });
+        $scope.hourlyMetaA=lodash.filter(lodash.slice(hWeather,0,12), function(hr){
+
+            return hr.FCTTIME.civil;
+        });
+
+        console.log('hourly meta?',$scope.hourlyMetaA);
+         $scope.hourlyWeatherB=lodash.map(lodash.slice(hWeather,12,24), function(hr){
+            hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
+            hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
+              return hr;
+        });
     });
 
     //todo: this would become a throwaway token upon impl of auth/identity

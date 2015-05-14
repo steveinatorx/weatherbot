@@ -9,7 +9,7 @@
 angular.module('weatherbotApp')
   .directive('mymarquee', function () {
     return {
-      template: '<p ng-show="targetHide">{{targetA}}</p>',
+      template: '<p ng-show="targetHide" class="bold">{{targetA}}</p>',
       restrict: 'E',
       scope: {
         data:'=',

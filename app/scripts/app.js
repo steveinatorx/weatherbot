@@ -24,6 +24,7 @@ angular
     'ngLodash',
     'btford.socket-io',
     'uuid',
+    'nvd3',
     'uiGmapgoogle-maps'
   ])
   .config(function ($routeProvider,uiGmapGoogleMapApiProvider ) {
@@ -42,7 +43,8 @@ angular
       libraries: 'weather,geometry,visualization'
     });
 
-  }).run(function ($httpBackend) {
+  }).run(function ($httpBackend, $rootScope) {
+    $rootScope._ = window._;
 
     $httpBackend.whenGET(/^.*/).passThrough();
     $httpBackend.whenJSONP(/^.*/).passThrough();
