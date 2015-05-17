@@ -491,3 +491,15 @@ only screen and (max-width: 760px),
     white-space: nowrap;
   }
 }
+
+
+
+.tick line {
+  display: none;
+}
+
+.fOLabel {
+
+  fill: rgb(157,157,157);
+  font-size:8px !important;
+}

@@ -7427,11 +7427,12 @@ button.close {
 
 body {
   background-color: #2f3238;
-  color: white;
-  font-size: 18px;
+  color: #9d9d9d;
+  font-size: 22px;
   width: 100%;
   overflow-x: hidden;
-  font-family: Raleway; }
+  font-family: Raleway;
+  padding-top: 65px; }
 
 .blue {
   color: #3085a3; }
@@ -7810,7 +7811,7 @@ table.headerTable td {
   font-weight: bold;
   text-align: center;
   width: 40px;
-  border: 2px solid black;
+  border: 1px solid black;
   white-space: nowrap; }
 
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -7838,5 +7839,11 @@ table.headerTable td {
     width: 45%;
     padding-right: 10px;
     white-space: nowrap; } }
+.tick line {
+  display: none; }
+
+.fOLabel {
+  fill: #9d9d9d;
+  font-size: 8px !important; }
 
 /*# sourceMappingURL=main.css.map */

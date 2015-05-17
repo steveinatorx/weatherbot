@@ -144,14 +144,14 @@ $interval(function(){
     $scope.$on('tickHourlyWeather',function(){
 
         var hWeather=lodash.values(dispatchService.getHourlyWeather());
-        $log.info('retrieved hourly weather',lodash.values(hWeather));
+        //$log.info('retrieved hourly weather',lodash.values(hWeather));
 
       //$scope.hWeatherDataA=[];
       $scope.hourlyWeatherA=lodash.map(lodash.slice(hWeather,0,12), function(hr){
           $log.info('hr',hr);
             hr.local_icon=imageIconRe.exec(hr.icon_url)[1];
             hr.local_time=hr.FCTTIME.civil.replace(' AM','a').replace(' PM','p');
-              $log.info(hr);
+              //$log.info(hr);
 
                 //$scope.hWeatherDataA.push(hr.temp.english);
 

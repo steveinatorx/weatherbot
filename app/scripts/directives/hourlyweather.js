@@ -15,12 +15,7 @@ angular.module('weatherbotApp')
       restrict: 'E',
       scope: {
         data: '='
-      } ,
-      /*link: function(scope, elements, attrs){
-
-
-
-      },*/
+      },
       controller: function($scope,iconService) {
 
         $scope.foo = function(raw) {
