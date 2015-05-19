@@ -1,69 +1,37 @@
 <div class="navbar navbar-fixed-top navbar-inverse bold">
-  <div class="navbar-header"><a class="navbar-brand">Noe Valley TV - BETA</a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-  </a>
-  </div>
-  <div class="container">
-    <!-- Collapsable nav bar -->
-    <!-- Your site name for the upper left corner of the site -->
-    <!-- Start of the nav bar content -->
-    <div class="navbar-collapse">
-      <!-- Other nav bar content -->... ...
-      <!-- The drop down menu -->
-      <ul class="nav pull-right navbar-nav">
-        <li><a href="/users/sign_up">Sign Up</a>
-        </li>
-        <li class="divider-vertical"></li>
-        <li class="dropdown"> <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-
-          <div class="dropdown-menu" style="padding: 10px;min-width:240px;">
-
-
-            <form action="[YOUR ACTION]" method="post" role="form" class="form-horizontal">
-
-              <input class="form-control" id="inputEmail1" placeholder="Email" type="email" style="margin-bottom:.5em">
-
-              <input class="form-control" id="inputPassword1" placeholder="Password" type="password" style="margin-bottom:.5em">
-
-              <div class="checkbox">
-                <label><input type="checkbox"> Remember me</label>
-              </div>
-
-              <input class="btn btn-primary" style="margin-top:.75em;width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In">
-            </form>
-
-
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+  beta
 </div>
 
-<div>
+<div class="container" style="border:2px solid blue;">
   <div style="padding:5px;margin-bottom:5px" class="alert alert-danger" ng-class="{fade:doAlertFade}" ng-if="showAlert">
     <span ng-bind-html="alertMsg"></span>
   </div>
-<table>
-  <tr>
-    <td style="vertical-align:top;width:50%;">
-      <!--<span class="blue bold">{{data.geo.lat}}, {{data.geo.lon}}</span>-->
-      <p style="margin-bottom:3px; margin-top:3px; font-size:80px" class= "blue bold" ng-if="data.weather">
+
+ <!--     <div style="border:1px solid white; height:100px; width:100px">
+
+      <ng-include src="'views/clock.html'"></ng-include>
+      </div>
+-->
+
+  <table style="border:1px solid red;width:100%">
+    <tr>
+    <td style="vertical-align:top;border:1px solid yellow; width:30%">
+      <p class="blue bold">{{data.geo.lat}}, {{data.geo.lon}}</p>
+      <!--<span style="margin-bottom:3px; margin-top:3px;" class="blue bold bigFont" ng-if="data.weather">
         <weather-icon data-condition="{{data.local_icon}}"></weather-icon>
         {{data.weather}} {{data.temp_f}}&deg;&nbsp;
-      </p>
-
-      <div ng-if="data.weather" class="blue bold" style="font-size:30px">
+      </span>
+      <span ng-if="data.weather" class="blue bold bigFont">
       humidity: {{data.relative_humidity}}<br>
       wind: {{data.wind_string}}<br>
       visibility: {{data.visibility_mi}} miles
-      </div>
+      </span>-->
     </td>
-    <td style="width:25%">
-     <div style="position:relative">
-        <div  style="position:absolute; z-index:999; top:150px; left:50px;" ng-show="!mapReady"><load-Animation/></div>
-       <span><ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
+    <td>
+     <div>
+       <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
        <ui-gmap-markers models="markers" coords="'coords'" options="'options'">
-          </ui-gmap-markers></ui-gmap-google-map></span>
+          </ui-gmap-markers></ui-gmap-google-map>
      </div>
     </td>
   </tr>
@@ -123,7 +91,7 @@
 </div>
 
 </div>
-<footer class="navbar-default navbar-fixed-bottom">
+<footer class="navbar-inverse navbar-fixed-bottom">
   <div id="container">
       a <img src="assets/images/bitcalculus_logo.gif"> project 2015
   </div>

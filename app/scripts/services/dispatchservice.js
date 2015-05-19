@@ -96,7 +96,13 @@ angular.module('weatherbotApp')
           });
 
           $log.warn('###getTopics called',initData);
-          mySocket.emit('getTopics',initData);
+          try {
+            mySocket.emit('getTopics', initData);
+          }catch(e){
+
+            $log.error(e);
+
+          }
 
         };
         //listeners

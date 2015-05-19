@@ -7587,200 +7587,13 @@ body {
   100% {
     transform: scale(0.3);
     background-color: #333333; } }
-/* when hiding the thing */
-/*
-.ng-hide-add         {
-
-  -webkit-animation:0.5s lightSpeedOut ease;
-
-  animation:0.5s lightSpeedOut ease;
-
-}
-
-
-.ng-hide-remove      {
-
-  -webkit-animation:0.5s flipInX ease;
-
-  animation:0.5s flipInX ease;
-
-}
-
-/* ANIMATIONS (FROM ANIMATE.CSS) */
-/* flip in */
-/*
-@-webkit-keyframes flipInX {
-
-  0% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-
-    -webkit-transition-timing-function: ease-in;
-
-    transition-timing-function: ease-in;
-
-    opacity: 0;
-
-  }
-
-  40% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-
-    -webkit-transition-timing-function: ease-in;
-
-    transition-timing-function: ease-in;
-
-  }
-
-  60% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-
-    opacity: 1;
-
-  }
-
-  80% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-
-  }
-
-  100% {
-
-    -webkit-transform: perspective(400px);
-
-    transform: perspective(400px);
-
-  }
-
-}
-
-@keyframes flipInX {
-
-  0% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-
-    -ms-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-
-    -webkit-transition-timing-function: ease-in;
-
-    transition-timing-function: ease-in;
-
-    opacity: 0;
-
-  }
-
-  40% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-
-    -ms-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-
-    -webkit-transition-timing-function: ease-in;
-
-    transition-timing-function: ease-in;
-
-  }
-
-  60% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-
-    -ms-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-
-    opacity: 1;
-
-  }
-
-  80% {
-
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-
-    -ms-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-
-    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-
-  }
-
-  100% {
-
-    -webkit-transform: perspective(400px);
-
-    -ms-transform: perspective(400px);
-
-    transform: perspective(400px);
-
-  }
-
-}
-
-
-@-webkit-keyframes lightSpeedOut {
-
-  0% {
-
-    opacity: 1;
-
-  }
-
-  100% {
-
-    -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
-
-    transform: translate3d(100%, 0, 0) skewX(30deg);
-
-    opacity: 0;
-
-  }
-
-}
-
-@keyframes lightSpeedOut {
-
-  0% {
-
-    opacity: 1;
-
-  }
-
-  100% {
-
-    -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
-
-    -ms-transform: translate3d(100%, 0, 0) skewX(30deg);
-
-    transform: translate3d(100%, 0, 0) skewX(30deg);
-
-    opacity: 0;
-
-  }
-
-}
-*/
 .weather .col-xs-2, .weather .col-xs-10 {
   display: inline-block;
   float: none; }
 
 .angular-google-map, .angular-google-map-container {
   height: 300px;
-  width: 600px;
+  width: 100%;
   display: inline-block; }
 
 .ib {
@@ -7814,6 +7627,18 @@ table.headerTable td {
   border: 1px solid black;
   white-space: nowrap; }
 
+@media all and (min-width: 960px) {
+  .epicFont {
+    font-size: 80px; }
+
+  .bigFont {
+    font-size: 50px; } }
+@media all and (max-width: 959px) and (min-width: 600px) {
+  .epicFont {
+    font-size: 50px; } }
+@media all and (max-width: 599px) and (min-width: 320px) {
+  .epicFont {
+    font-size: 20px; } }
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Force table to not be like tables anymore */
   table, thead, tbody, th, td, tr {
@@ -7836,7 +7661,6 @@ table.headerTable td {
     /* Top/left values mimic padding */
     top: 6px;
     left: 6px;
-    width: 45%;
     padding-right: 10px;
     white-space: nowrap; } }
 .tick line {

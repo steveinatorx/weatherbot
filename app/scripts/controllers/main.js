@@ -72,8 +72,9 @@ $interval(function(){
 
 
 
-  $scope.$watch('geo',function() {
-    $log.log('geo ticked');
+  $scope.$watch('data.geo',function(newVal, oldVal) {
+    $log.log('scope geo ticked',oldVal);
+    $log.log('scope geo ticked',newVal);
 
     weatherApi.getCurrentWeather()
       .then(function(data){
@@ -119,7 +120,7 @@ $interval(function(){
              latitude: $scope.data.geo.lat,
              longitude: $scope.data.geo.lon
            },
-           zoom: 11,
+           zoom: 14,
            options: mapOptions
          };
        }
@@ -128,6 +129,16 @@ $interval(function(){
   });
 
   function init() {
+    //todo: IOS safari looks like it needs some kind of CORS preflight
+/*
+    $http.get("http://127.0.0.1:8080")
+    .success(function(response) {$log.warn('yoyo response::::',response)})
+      .error(function(err){
+        $log.error(err);
+
+      });
+*/
+
     $scope.$on('tickCurrentWeather',function(){
           var rawWeather=dispatchService.getCurrentWeather();
           $log.info('tickCurrentWeather!!!!!!!',rawWeather.weather);
@@ -251,10 +262,12 @@ $interval(function(){
   };
 
   function getGeo() {
-    var deferred=$q.defer();
 
-    console.log('in getGeo');
+    var deferred=$q.defer();
+    $log.info('in getGeo');
+
     geolocation.getLocation().then(function(data){
+      $log.warn('returned from getLocation()', data);
        $scope.data.geo = {lat:data.coords.latitude, lon:data.coords.longitude};
        localStorageService.set('geo',$scope.data.geo);
 
@@ -274,6 +287,8 @@ $interval(function(){
       return false;
     } else {
       addAlert({'msg':'<strong>retrieved geolocation from local storage..</strong>','type':'danger'});
+
+        $log.info('assigning data.geo from LS');
        $scope.data.geo=localStorageService.get('geo');
        return true;
      }

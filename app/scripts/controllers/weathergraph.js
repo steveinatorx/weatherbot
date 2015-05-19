@@ -108,11 +108,11 @@ angular.module('weatherbotApp')
                      .attr('x', 0)
                      .attr('y', -42)
                      .attr('width', rWidth)
-                     .attr('height', 40)
+                     .attr('height', 40);
 
-                 var htmlLabel=fO.append("xhtml:body")
-                    .style("margin",0)
-                    .style("padding",0);
+                 var htmlLabel=fO.append('xhtml:body')
+                    .style('margin',0)
+                    .style('padding',0);
 
 
                  d3.selectAll('foreignObject').data($scope.hData);

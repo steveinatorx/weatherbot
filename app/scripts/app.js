@@ -25,7 +25,9 @@ angular
     'btford.socket-io',
     'uuid',
     'nvd3',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'ds.clock',
+    'ngTextFill'
   ])
   .config(function ($routeProvider,uiGmapGoogleMapApiProvider ) {
     $routeProvider
