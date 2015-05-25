@@ -27,23 +27,33 @@ angular
     'nvd3',
     'uiGmapgoogle-maps',
     'ds.clock',
-    'ngTextFill'
+    'ngMaterial',
+    'angularMoment'
+
   ])
-  .config(function ($routeProvider,uiGmapGoogleMapApiProvider ) {
+  .config(function ($routeProvider, $locationProvider, uiGmapGoogleMapApiProvider ) {
+
+    //$locationProvider.html5Mode(true);
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+      }).when('/beta', {
+        templateUrl: 'views/beta.html',
+        controller: 'BetaCtrl'
+      }).otherwise({ redirectTo: '/'});
 
+    //todo: move to env var/config
     uiGmapGoogleMapApiProvider.configure({
       key: 'AIzaSyBL9J7aT7oeMrQHT_SdGgDL7AG9_KNfqj8',
       v: '3.17',
       libraries: 'weather,geometry,visualization'
     });
+
+
+
+
 
   }).run(function ($httpBackend, $rootScope) {
     $rootScope._ = window._;

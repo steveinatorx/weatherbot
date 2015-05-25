@@ -2,7 +2,10 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
+
+
     <title>Noe Valley App</title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -13,6 +16,7 @@
     <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css" />
     <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-clock/dist/angular-clock.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <link href='//fonts.googleapis.com/css?family=Syncopate:400,700' rel='stylesheet' type='text/css'>
@@ -70,7 +74,11 @@
     <script src="bower_components/nvd3/nv.d3.js"></script>
     <script src="bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
     <script src="bower_components/angular-ui-clock/dist/angular-clock.js"></script>
-    <script src="bower_components/angular-textfill/angular-textfill.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 <script src="config/config.js"></script>
@@ -90,6 +98,10 @@
         <script src="scripts/services/weatherapi.js"></script>
         <script src="scripts/controllers/weathergraph.js"></script>
         <script src="scripts/filters/heatmap.js"></script>
+        <script src="scripts/controllers/beta.js"></script>
+        <script src="scripts/services/dataservice.js"></script>
+        <script src="scripts/services/utilservice.js"></script>
+        <script src="scripts/directives/compile.js"></script>
         <!-- endbuild -->
     <!--oddly had to manually include this?-->
     <script src="bower_components/socket.io-client/socket.io.js"></script>
